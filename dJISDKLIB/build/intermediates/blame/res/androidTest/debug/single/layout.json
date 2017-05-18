@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "F:\\workspace\\jetbrains\\MyGaodeDemo4.0\\dJISDKLIB\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\dialog_login.xml",
+        "source": "F:\\workspace\\jetbrains\\MyGaodeDemo4.0\\dJISDKLIB\\build\\intermediates\\bundles\\debug\\res\\layout\\dialog_login.xml"
+    },
+    {
+        "merged": "F:\\workspace\\jetbrains\\MyGaodeDemo4.0\\dJISDKLIB\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\log_dialog_view.xml",
+        "source": "F:\\workspace\\jetbrains\\MyGaodeDemo4.0\\dJISDKLIB\\build\\intermediates\\bundles\\debug\\res\\layout\\log_dialog_view.xml"
+    },
+    {
+        "merged": "F:\\workspace\\jetbrains\\MyGaodedemo-cl\\dJISDKLIB\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\dialog_login.xml",
+        "source": "F:\\workspace\\jetbrains\\MyGaodedemo-cl\\dJISDKLIB\\build\\intermediates\\bundles\\debug\\res\\layout\\dialog_login.xml"
+    },
+    {
+        "merged": "F:\\workspace\\jetbrains\\MyGaodedemo-cl\\dJISDKLIB\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\log_dialog_view.xml",
+        "source": "F:\\workspace\\jetbrains\\MyGaodedemo-cl\\dJISDKLIB\\build\\intermediates\\bundles\\debug\\res\\layout\\log_dialog_view.xml"
+    }
+]

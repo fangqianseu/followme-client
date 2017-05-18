@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('AMap2DMap_4.2.0_AMapSearch_4.0.0_AMapLocation_3.3.0_20170120.jar'))

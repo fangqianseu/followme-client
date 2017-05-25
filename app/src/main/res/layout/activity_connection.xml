@@ -1,68 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#F7F8FA">
 
     <TextView
         android:id="@+id/text_connection_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Status: No Product Connected"
+        android:text="@string/connection_loose"
         android:textColor="@android:color/black"
-        android:textSize="20dp"
+        android:textSize="22dp"
         android:textStyle="bold"
-        android:layout_alignBottom="@+id/text_product_info"
+        android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="89dp" />
+        android:layout_marginTop="20dp" />
 
     <TextView
         android:id="@+id/text_product_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="270dp"
+        android:layout_marginTop="53dp"
         android:text="@string/product_information"
         android:textColor="@android:color/black"
-        android:textSize="20dp"
+        android:textSize="22dp"
         android:gravity="center"
         android:textStyle="bold"
-        />
+        android:layout_alignTop="@+id/text_connection_status"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/btn_open"
-        android:layout_width="150dp"
+        android:layout_width="250dp"
         android:layout_height="55dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="350dp"
         android:background="@drawable/round_btn"
-        android:text="Open"
+        android:text="进入 FollowMe App"
         android:textColor="@color/colorWhite"
-        android:textSize="20dp"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="430dp"
-        android:text="@string/sdk_version"
-        android:textSize="15dp"
-        android:id="@+id/textView2" />
+        android:textSize="18dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/imageView3"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="DJI Client"
+        android:text="DJI APP"
         android:id="@+id/textView"
-        android:layout_marginTop="58dp"
+        android:layout_marginTop="17dp"
         android:textStyle="bold"
-        android:textSize="20dp"
+        android:textSize="22dp"
         android:textColor="@color/colorBlack"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@drawable/airicon"
+        android:layout_marginTop="32dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/text_product_info"
+        />
+
 
 </RelativeLayout>

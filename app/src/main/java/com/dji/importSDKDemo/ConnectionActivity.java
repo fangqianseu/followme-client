@@ -123,8 +123,8 @@ public class ConnectionActivity extends Activity implements View.OnClickListener
             Log.v(TAG, "refreshSDK: True");
             mBtnOpen.setEnabled(true);
 
-            String str = mProduct instanceof Aircraft ? "DJIAircraft" : "DJIHandHeld";
-            mTextConnectionStatus.setText("Status: " + str + " connected");
+            String str = mProduct instanceof Aircraft ? "DJI无人机" : "DJIHandHeld";
+            mTextConnectionStatus.setText("状态: " + str + " 已连接");
 
             if (null != mProduct.getModel()) {
                 mTextProduct.setText("" + mProduct.getModel().getDisplayName());
@@ -135,7 +135,9 @@ public class ConnectionActivity extends Activity implements View.OnClickListener
         } else {
             Log.v(TAG, "refreshSDK: False");
             mBtnOpen.setEnabled(false);
-//            mBtnOpen.setEnabled(true);
+
+
+            mBtnOpen.setEnabled(true);
 
             mTextProduct.setText(R.string.product_information);
             mTextConnectionStatus.setText(R.string.connection_loose);

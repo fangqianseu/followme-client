@@ -24,6 +24,8 @@ import android.util.Log;
 import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -41,6 +43,9 @@ import com.amap.api.maps2d.model.MarkerOptions;
 import com.amap.api.maps2d.model.Polygon;
 import com.amap.api.maps2d.model.Polyline;
 import com.amap.api.maps2d.model.PolylineOptions;
+import com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton;
+import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
+import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -79,14 +84,14 @@ import dji.thirdparty.rx.schedulers.NewThreadScheduler;
 
 import static dji.common.mission.waypoint.WaypointMissionState.READY_TO_EXECUTE;
 
-public class MainActivity extends FragmentActivity implements View.OnClickListener {
+public class MainActivity extends FragmentActivity {
 
     protected static final String TAG = "fq";
 
     private MapView mapView;
     private AMap aMap;
 
-    private TextView mstate, message, mToast;
+    private TextView mstate, message, mToast, mLng, mLat, mAlt, mDis, mySpeed;
     private Button bltooth, locate, clear;
     private Button start, stop;
 
@@ -169,22 +174,155 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
 
         mstate = (TextView) findViewById(R.id.ConnectStatusTextView);
-        message = (TextView) findViewById(R.id.message);
+//        message = (TextView) findViewById(R.id.message);
         mToast = (TextView) findViewById(R.id.mytoast);
 
-        bltooth = (Button) findViewById(R.id.bluetooth);
-        locate = (Button) findViewById(R.id.locate);
-        clear = (Button) findViewById(R.id.clear);
-        start = (Button) findViewById(R.id.start);
-        stop = (Button) findViewById(R.id.stop);
+        mLat = (TextView) findViewById(R.id.Lat);
+        mLng = (TextView) findViewById(R.id.Lng);
+        mAlt = (TextView) findViewById(R.id.Alt);
+        mDis = (TextView) findViewById(R.id.Dis);
+        mySpeed = (TextView) findViewById(R.id.Speed);
 
+//        bltooth = (Button) findViewById(R.id.bluetooth);
+//        locate = (Button) findViewById(R.id.locate);
+//        clear = (Button) findViewById(R.id.clear);
+//        start = (Button) findViewById(R.id.start);
+//        stop = (Button) findViewById(R.id.stop);
+//
+//
+//        bltooth.setOnClickListener(this);
+//        locate.setOnClickListener(this);
+//        clear.setOnClickListener(this);
+//        start.setOnClickListener(this);
+//        stop.setOnClickListener(this);
 
-        bltooth.setOnClickListener(this);
-        locate.setOnClickListener(this);
-        clear.setOnClickListener(this);
-        start.setOnClickListener(this);
-        stop.setOnClickListener(this);
+        leftCenterButton();
+    }
 
+    private void leftCenterButton() {
+        int redActionButtonSize = getResources().getDimensionPixelSize(
+                R.dimen.red_action_button_size);
+        int redActionButtonMargin = getResources().getDimensionPixelOffset(
+                R.dimen.action_button_margin);
+        int redActionButtonContentSize = getResources().getDimensionPixelSize(
+                R.dimen.red_action_button_content_size);
+        int redActionButtonContentMargin = getResources()
+                .getDimensionPixelSize(R.dimen.red_action_button_content_margin);
+
+        int redActionMenuRadius = getResources().getDimensionPixelSize(
+                R.dimen.red_action_menu_radius);
+        int blueSubActionButtonSize = getResources().getDimensionPixelSize(
+                R.dimen.blue_sub_action_button_size);
+        int blueSubActionButtonContentMargin = getResources()
+                .getDimensionPixelSize(
+                        R.dimen.blue_sub_action_button_content_margin);
+
+        ImageView fabIconStar = new ImageView(this);
+//        fabIconStar.setImageResource(R.drawable.ic_action_new_light);
+
+        // 设置菜单按钮Button的宽、高，边距
+        FloatingActionButton.LayoutParams starParams = new FloatingActionButton.LayoutParams(
+                redActionButtonSize, redActionButtonSize);
+        starParams.setMargins(redActionButtonMargin, redActionButtonMargin,
+                redActionButtonMargin, redActionButtonMargin);
+        fabIconStar.setLayoutParams(starParams);
+
+        // 设置菜单按钮Button里面图案的宽、高，边距
+        FloatingActionButton.LayoutParams fabIconStarParams = new FloatingActionButton.LayoutParams(
+                redActionButtonContentSize, redActionButtonContentSize);
+        fabIconStarParams.setMargins(redActionButtonContentMargin,
+                redActionButtonContentMargin, redActionButtonContentMargin,
+                redActionButtonContentMargin);
+
+        final FloatingActionButton leftCenterButton = new FloatingActionButton.Builder(
+                this).setContentView(fabIconStar, fabIconStarParams)
+                .setPosition(FloatingActionButton.POSITION_LEFT_CENTER)
+                .setLayoutParams(starParams).build();
+
+        SubActionButton.Builder lCSubBuilder = new SubActionButton.Builder(this);
+//        lCSubBuilder.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_white)
+//        );
+
+        //设置菜单中图标的参数
+        FrameLayout.LayoutParams blueContentParams = new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT);
+        blueContentParams.setMargins(blueSubActionButtonContentMargin,
+                blueSubActionButtonContentMargin,
+                blueSubActionButtonContentMargin,
+                blueSubActionButtonContentMargin);
+
+        lCSubBuilder.setLayoutParams(blueContentParams);
+
+        //设置布局参数
+        FrameLayout.LayoutParams blueParams = new FrameLayout.LayoutParams(blueSubActionButtonSize,
+                blueSubActionButtonSize);
+        lCSubBuilder.setLayoutParams(blueParams);
+
+        final ImageView lcIcon1 = new ImageView(this);
+        final ImageView lcIcon2 = new ImageView(this);
+        final ImageView lcIcon3 = new ImageView(this);
+        final ImageView lcIcon4 = new ImageView(this);
+
+        lcIcon1.setImageResource(R.drawable.bluetooth);
+        lcIcon2.setImageResource(R.drawable.locate);
+        lcIcon3.setImageResource(R.drawable.start);
+        lcIcon4.setImageResource(R.drawable.stop);
+
+        //setStartAngle(70).setEndAngle(-70)设置扩展菜单的位置
+        final FloatingActionMenu leftCenterMenu = new FloatingActionMenu.Builder(this)
+                .addSubActionView(lCSubBuilder.setContentView(lcIcon1, blueContentParams).build())
+                .addSubActionView(lCSubBuilder.setContentView(lcIcon2, blueContentParams).build())
+                .addSubActionView(lCSubBuilder.setContentView(lcIcon3, blueContentParams).build())
+                .addSubActionView(lCSubBuilder.setContentView(lcIcon4, blueContentParams).build())
+                .setRadius(redActionMenuRadius).setStartAngle(-70).setEndAngle(70)
+                .attachTo(leftCenterButton).build();
+
+        leftCenterMenu.setStateChangeListener(new FloatingActionMenu.MenuStateChangeListener() {
+            @Override
+            public void onMenuOpened(FloatingActionMenu floatingActionMenu) {
+                lcIcon1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startclient();
+                    }
+                });
+
+                lcIcon2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        updateDroneLocation();
+                        cameraUpdate();
+
+                        linedraw.add(new LatLng(droneLocationLat, droneLocationLng));
+
+                    }
+                });
+
+                lcIcon3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        waypointList.clear();
+                        mystartmission();
+                    }
+                });
+
+                lcIcon4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        stopWaypointMission();
+                        waypointList.clear();
+                        waypointMissionBuilder.waypointList(waypointList);
+                        myLocationPointList.clear();
+                    }
+                });
+            }
+
+            @Override
+            public void onMenuClosed(FloatingActionMenu floatingActionMenu) {
+
+            }
+        });
     }
 
     private void initMapView() {
@@ -362,7 +500,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                              }
                     , 200);
 
-            setResultToToast("Execution finished: " + (error == null ? "Success!" : error.getDescription()));
+            setResultToToast("任务执行结束: " + (error == null ? "成功!" : error.getDescription()));
         }
     };
 
@@ -392,8 +530,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         String myspeed = df2.format(mSpeed);
 
         Message msg2 = new Message();
-        String info = "lat:" + mylat + " Lng:" + myLng + " Alt:" + myAlt + "\nDis:" + mydistance + " Spe:" + myspeed;
-        info.replace("\\n", "\n");
+        String info = myLng + "-" + mylat + "-" + myAlt + "-" + mydistance + "-" + myspeed;
         msg2.obj = info;
         msg2.what = 2;
         LinkDetectedHandler.sendMessage(msg2);
@@ -419,50 +556,50 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     }
 
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.bluetooth: {
-                startclient();
-                break;
-            }
-            case R.id.locate: {
-                updateDroneLocation();
-                cameraUpdate();
-
-                linedraw.add(new LatLng(droneLocationLat, droneLocationLng));
-
-                break;
-            }
-            case R.id.clear: {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        aMap.clear();
-                    }
-
-                });
-
-
-                updateDroneLocation();
-                break;
-            }
-            case R.id.start: {
-                waypointList.clear();
-                mystartmission();
-                break;
-            }
-            case R.id.stop: {
-                stopWaypointMission();
-                waypointList.clear();
-                waypointMissionBuilder.waypointList(waypointList);
-                myLocationPointList.clear();
-                break;
-            }
-            default:
-                break;
-        }
-    }
+//    @Override
+//    public void onClick(View v) {
+//        switch (v.getId()) {
+//            case R.id.bluetooth: {
+//                startclient();
+//                break;
+//            }
+//            case R.id.locate: {
+//                updateDroneLocation();
+//                cameraUpdate();
+//
+//                linedraw.add(new LatLng(droneLocationLat, droneLocationLng));
+//
+//                break;
+//            }
+//            case R.id.clear: {
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        aMap.clear();
+//                    }
+//
+//                });
+//
+//
+//                updateDroneLocation();
+//                break;
+//            }
+//            case R.id.start: {
+//                waypointList.clear();
+//                mystartmission();
+//                break;
+//            }
+//            case R.id.stop: {
+//                stopWaypointMission();
+//                waypointList.clear();
+//                waypointMissionBuilder.waypointList(waypointList);
+//                myLocationPointList.clear();
+//                break;
+//            }
+//            default:
+//                break;
+//        }
+//    }
 
     private void startclient() {
         device = mBtAdapter.getRemoteDevice(BlueToothAddress);
@@ -563,7 +700,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         DJIError error = getWaypointMissionOperator().loadMission(waypointMissionBuilder.build());
         if (error == null) {
-            setResultToToast("loadWaypoint succeeded");
+            setResultToToast("载入任务成功");
             Log.d(TAG, "loadWaypoint succeeded ");
 
 //            if (WaypointMissionState.READY_TO_RETRY_UPLOAD.equals(getWaypointMissionOperator().getCurrentState())
@@ -575,7 +712,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             Log.d(TAG, String.valueOf(getWaypointMissionOperator().getCurrentState()));
 
         } else {
-            setResultToToast("loadWaypoint failed " + error.getDescription());
+            setResultToToast("载入任务失败 " + error.getDescription());
         }
 
     }
@@ -591,7 +728,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 if (error == null) {
 
 
-                    setResultToToast("Mission upload successfully!");
+                    setResultToToast("任务上传成功！");
 
                 } else {
                     Log.e("fq", "Mission upload failed, error: " + error.getDescription() + " retrying...");
@@ -624,7 +761,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 drawline();
                 missionfailetime = 0;
 
-                setResultToToast("Mission Start: " + (error == null ? "Successfully" : error.getDescription()));
+                setResultToToast("任务开始: " + (error == null ? "成功" : error.getDescription()));
 
             }
         });
@@ -639,7 +776,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
                 Log.d("fq stopMission", "begin");
 
-                setResultToToast("Mission Stop: " + (error == null ? "Successfully" : error.getDescription()));
+                setResultToToast("任务结束: " + (error == null ? "成功" : error.getDescription()));
             }
         });
 
@@ -687,14 +824,14 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                         .fromString("00001101-0000-1000-8000-00805F9B34FB"));
                 // 连接
                 Message msg2 = new Message();
-                msg2.obj = "please, we are linking to" + BlueToothAddress;
+                msg2.obj = "正在连接。。。" ;
                 msg2.what = 0;
                 LinkDetectedHandler.sendMessage(msg2);
 
                 socket.connect();
 
                 Message msg = new Message();
-                msg.obj = "already linked to service.";
+                msg.obj = "已连接到服务器.";
                 msg.what = 0;
                 LinkDetectedHandler.sendMessage(msg);
 
@@ -720,7 +857,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 if (1 == msg.what) {
                     mToast.setText((String) msg.obj);
                 } else {
-                    message.setText((String) msg.obj);
+                    String[] s = ((String) msg.obj).split("-");
+                    mLng.setText(s[0]);
+                    mLat.setText(s[1]);
+                    mAlt.setText(s[2]);
+                    mDis.setText(s[3]);
+                    mySpeed.setText(s[4]);
                 }
             }
         }
@@ -731,7 +873,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         Log.d("fq startmissionHandler", "begin");
 
         if (servicemissionisstart == false && myLocationPointList.size() == 0) {
-            setResultToToast("task end");
+            setResultToToast("任务结束");
             return;
         }
 
@@ -791,7 +933,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private void servicemissionstop() {
 
         Message msg = new Message();
-        msg.obj = "service mission stop.";
+        msg.obj = "主无人机任务结束.";
         msg.what = 0;
         LinkDetectedHandler.sendMessage(msg);
         Log.d("fq servicchange", "service end");
@@ -808,7 +950,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         String[] gottondata = in.split("-");
         if (gottondata.length != 3) {
-            setResultToToast("data error");
+            setResultToToast("数据错误");
         }
 
         if (gottondata.length == 4) {

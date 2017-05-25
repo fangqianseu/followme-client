@@ -60,7 +60,7 @@ public class DJIDemoApplication extends Application {
                         Toast.makeText(getApplicationContext(), "Register Success", Toast.LENGTH_LONG).show();
                     }
                 });
-                Log.d(TAG, "Register success");
+                Log.d(TAG, "注册成功");
 
             } else {
                 Handler handler = new Handler(Looper.getMainLooper());
@@ -72,7 +72,7 @@ public class DJIDemoApplication extends Application {
                     }
                 });
 
-                Log.d(TAG, "Register failed");
+                Log.d(TAG, "注册失败");
 
             }
             Log.e(TAG, error == null ? "success" : error.getDescription());

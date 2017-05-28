@@ -331,9 +331,9 @@ public class MainActivity extends FragmentActivity {
             aMap = mapView.getMap();
         }
 
-        LatLng shenzhen = new LatLng(22.5362, 113.9454);
-        aMap.addMarker(new MarkerOptions().position(shenzhen).title("Marker in Shenzhen"));
-        aMap.moveCamera(CameraUpdateFactory.newLatLng(shenzhen));
+//        LatLng shenzhen = new LatLng(22.5362, 113.9454);
+//        aMap.addMarker(new MarkerOptions().position(shenzhen).title("Marker in Shenzhen"));
+//        aMap.moveCamera(CameraUpdateFactory.newLatLng(shenzhen));
 
     }
 

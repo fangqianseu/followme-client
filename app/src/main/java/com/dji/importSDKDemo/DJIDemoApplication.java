@@ -57,7 +57,7 @@ public class DJIDemoApplication extends Application {
 
                     @Override
                     public void run() {
-                        Toast.makeText(getApplicationContext(), "Register Success", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "注册成功", Toast.LENGTH_LONG).show();
                     }
                 });
                 Log.d(TAG, "注册成功");
@@ -68,7 +68,7 @@ public class DJIDemoApplication extends Application {
 
                     @Override
                     public void run() {
-                        Toast.makeText(getApplicationContext(), "register sdk fails, check network is available", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "注册SDK失败, 请检查网络。", Toast.LENGTH_LONG).show();
                     }
                 });
 
